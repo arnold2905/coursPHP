@@ -5,7 +5,7 @@ initiation et cours PHP
 DOSSIER
 # 00-exos
 # 00-pages
-    ### 01_ma_page_php.php
+    ### 01_page_php.php
 # 01-intro
     ### 01_introduction.php
     ### infos.php
@@ -41,6 +41,7 @@ DOSSIER
     ### body.inc.php
     ### nav.inc.php
     ### footer.inc.php
+    ### end.inc.php
 
 # 10-boutique
     SOMMAIRE A COMPLETER
