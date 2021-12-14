@@ -1,5 +1,6 @@
 <footer>
-    <div class="bg-warning">
+    <div class="bg-warning text-white text-center">
+    <?php echo "<p> Exemple de constante en PHP >>> Chemin absolu du fichier en cours : " . __FILE__ . "</p>"; ?>    
         <p>
         <?php 
         setlocale(LC_ALL, 'fr_FR');
