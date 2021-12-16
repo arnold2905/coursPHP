@@ -41,6 +41,7 @@ DOSSIER
     ### body.inc.php
     ### nav.inc.php
     ### footer.inc.php
+    ### functions.php
     ### end.inc.php
 
 # 10-boutique
