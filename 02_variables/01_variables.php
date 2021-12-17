@@ -1,3 +1,8 @@
+<?php 
+// appel du fichier de fonctions
+require_once '../inc/functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,6 +23,7 @@
         <p class="lead text-center text-danger text-decoration-underline">Les variables en PHP</p>
         <!-- Variable indiquant le chemin du fichier  -->
         <?php echo "<p> Exemple de constante en PHP >>> Chemin absolu du fichier en cours : " . __FILE__ . "</p>"; ?>
+        dateFR();
     </header>
 
     <div class="container bg-white">
@@ -156,6 +162,114 @@
 
                     </tbody>
                 </table>
+            </div>
+        </section>
+        <!-- fin row  -->
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Les opérateurs d'affectation combinés</h2>
+                <p>En plus de l'opérateur classique d'  affectation = il existe plusieurs</p>               
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="row">Opérateurs</th>
+                            <th scope="row"> Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        <tr>
+                        <th scope="row">+=</th>
+                            <td>
+                            Addition puis affectation :<br>
+                            $x += $y équivaut à $x = $x + $y<br>
+                            $y peut être une expression complexe dont la valeur est un nombre.
+                            </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">-=</th>
+							<td>Soustraction puis affectation :<br>
+								$x -= $y équivaut à $x = $x - $y<br>
+								$y peut être une expression complexe dont la valeur est un nombre.</td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">*=</th>
+							<td>Multiplication puis affectation :<br>
+							$x *= $y équivaut à $x = $x * $y<br>
+							$y peut être une expression complexe dont la valeur est un nombre.</td>    
+                        </tr>
+
+                        <tr>
+                        <th scope="row">/=</th>
+							<td>Division puis affectation :<br>
+							$x /= $y équivaut à $x = $x / $y<br>
+							$y peut être une expression complexe dont la valeur est un nombre différent de 0.</td>       
+                        </tr>
+
+                        <tr>
+                        <th scope="row">%=</th>
+							<td>Modulo puis affectation :<br>
+								$x %= $y équivaut à $x = $x % $y $y<br>
+								$y peut être une expression complexe dont la valeur est un nombre.</td>   
+                        </tr>   
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+           <!-- fin row                       -->
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Les constantes</h2>
+                <p>Vous serez parfois amené à utiliser de manière répétitive des informations devant rester constantes dans toutes les pages d’un même site. Il peut s’agir de texte ou de nombres qui reviennent souvent. Pour ne pas risquer l’écrasement accidentel de ces valeurs, qui pourrait se produire si elles étaient contenues dans des variables, vous avez tout intérêt à les enregistrer sous forme de constantes personnalisées.</p>
+                <p>On peut définir ses constantes soi-même: pour définir ses constantes personnalisées, utilisez la fonction <code>define()</code> dont la syntaxe est la suivante <code></code>cf. la page suivante</p>
+                <a href="03_page.php" target='_blank'>page avec des constantes</a></p>
+            </div>
+             <!-- fin col                     -->
+
+            <div class="col-md-12">
+                <h2>Les constantes prédéfinies</h2>
+                <p>Il existe dans PHP un grand nombre de constantes prédéfinies.Vous serez parfois amené à utiliser de manière répétitive des informations devant rester constantes dans toutes les pages d’un même site. Il peut s’agir de texte ou de nombres qui reviennent souvent. Pour ne pas risquer l’écrasement accidentel de ces valeurs, qui pourrait se produire si elles étaient contenues dans des variables, vous avez tout intérêt à les enregistrer sous forme de constantes personnalisées.On peut définir ses constantes soi-même : pour définir des constantes personalisées, utilisez la fonction define() dont la syntaxe est la suivante cf. la page suivante page avec des constantes</p>
+                <a href="04_page.php" target='_blank'>page avec des constantes</a></p>
+            
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="row"><code>PHP_VERSION</code></th>
+                        <td>Version de PHP sur ce serveur n° : <?php echo PHP_VERSION; ?></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><code>PHP_OS</code></th>
+                        <td>Système d'exploitation(Operating System) : <?php echo PHP_OS; ?> </td>
+                    </tr>
+                        
+                    <tr>
+                        <th scope="row"><code>DEFAULT_INCLUDE_PATH</code></th>
+                        <td>Nom du fichier en cours d'exécution : <?php echo DEFAULT_INCLUDE_PATH; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><code>_FILE_</code></th>
+                        <td>Chemin d'accès au fichier par défaut : <?php echo __FILE__; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><code>__LINE__</code></th>
+                        <td>Chemin d'accès au fichier par défaut : <?php echo __LINE__; ?> </td>
+                    </tr>
+
+                </thead>
+
+            </table>
             </div>
         </section>
     </div>   

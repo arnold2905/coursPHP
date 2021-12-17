@@ -16,4 +16,11 @@ function dateFR() {
     echo utf8_encode(strftime('%A, %d, %B, %Y'));
 }
 
-?>
+//function dateFR() {
+//    setlocale(LC_TIME, 'fra_fra');
+//    echo"<p>Date et Jour :<span class=\"fw-bold\"> ". utf8_encode( strftime('%A, %d, %B, %Y'))."</p>";
+//  }
+
+// déclaration d'une constante qui contient une url
+define("validator","https://validator.w3.org/");
+?>    
