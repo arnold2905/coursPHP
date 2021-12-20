@@ -1,7 +1,5 @@
-<?php 
+<?php require_once '../inc/functions.php'?>; 
 // appel du fichier de fonctions
-require_once '../inc/functions.php';
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
