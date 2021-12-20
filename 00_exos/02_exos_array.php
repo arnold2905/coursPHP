@@ -82,8 +82,82 @@
                   echo "<li>" .$acteurs. "</li>";
               }
               echo "</ul>";
-            
-             ?>
+
+              // une nouvelle foreach avec le tableau2
+              // à chaque tour de boucle , la variable $pays prend les valeurs du tableau; le mot clef 'as" est obligatoire.
+              echo "<ol>";
+              foreach ($tableau2 as $pays) {
+                  echo "<li>" .$pays. "</li>";
+              }
+              echo "</ol>";
+
+              echo "<ol>";
+              foreach ($tableau1 as $indice => $acteurs) {
+                  echo "<li>Indice : $indice correspond à $acteurs</li>";
+                  // echo '<li>Indice : '.$indice. ' correspond à  ' .$acteurs. '</li>';
+              }
+              echo "</ol>";
+
+              echo "<ol>";
+                foreach ($couleurs as $indice => $teinte) {
+                    echo "<li>Indice : $indice correspond à $teinte </li>";
+                }
+
+              // 1- Déclarez un tableau associatif "$contacts" avec les indices prenom, nom, email et telephone en y mettant les valeurs correspondantes à un seul contact
+              //2- Puis avec une boucle foreach vous affichez la valaur dans une ul
+              //3- Puis dans une autre boucle vous affichez les valeurs dans des p sauf le prénom qui doit être dans un h3 (aide >>> if else)
+
+              $contacts = array(
+                'prenom' => 'Paul',
+                'nom' => 'Henri',
+                'email' => 'paulhenri@.ladefense.fr',
+                'telephone' => '0302030304'
+            );
+
+            jevar_dump($contacts);
+
+            echo "<ul>";
+              foreach ($contacts as $infos) {
+                  echo "<li>" .$infos. "</li>";
+              }
+              echo "</ul>";
+
+              foreach ($contacts as $indice =>$infos) {
+                //echo "<p>$indice : $infos </p>";
+              if ($indice == 'prenom') {
+                echo "<h3>$infos</h3>";
+                } else {
+                echo "<p>$infos</p>";
+                }  
+            }
+
+            // tableaux multidimensionnels, un tableau avec des sous-tableaux
+
+            $tableau_multi = array (
+                0 => array (
+                    'prenom' => 'jean',
+                    'nom' => 'Dujardin',
+                    'prenom' => 'j.dujardin@gmail.com',
+                    'tel' => '06 20 20 20 20',
+                ),
+                1 => array (
+                    'prenom' => 'marion',
+                    'nom' => 'Cotillard',
+                    'prenom' => 'm.cotillard@gmail.com',
+                    'tel' => '06 25 20 20 20',
+                ),
+                2 => array (
+                    'prenom' => 'John',
+                    'nom' => 'Wayne',
+                )
+            );
+
+            jevar_dump($tableau_multi);
+            jevar_dump($tableau_multi[2]);
+
+            jevar_dump($tableau_multi[1]['prenom']);
+
+            ?>
             </div>
         
         </section>   

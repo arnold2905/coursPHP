@@ -84,10 +84,59 @@
             ?>
 
         </div>
+        <!-- fin col  -->
+
+        <div class="col-md-6">
+            <h2 class="text-primary text-decoration-underline">3- Parcourir un tableau associatif avec <code>foreach</code></h2>
+            <p>Dans un tableau associatif nous pouvons choisir le nom des indices <br>
+        <code>
+            echo "&lt;ol>";<br>
+            foreach ( $couleurs as $indice => $teinte) { <br>
+                echo "&lt;li>Indice : $indice correspond à $teinte &lt;/li";
+                <br>  
+            }<br>
+            echo "&lt;/ol>:<br>"
+        </code></p>
+
+        <?php 
+        echo "<ol>";
+        foreach($couleurs as $indice => $teinte) {
+            echo "<li>Indice : $indice correspond à $teinte </li>";
+        }
+        echo "</ol>";
+        echo "<hr>";
+
+        $contacts = array(
+            'prenom' => 'Paul',
+            'nom' => 'Henri',
+            'email' => 'paulhenri@.ladefense.fr',
+            'telephone' => '0302030304'
+        );
+
+        echo "<div class=\"border border-warning bg-light w-50>";
+        foreach ($contacts as $indice =>$infos) {
+            //echo "<p>$indice : $infos </p>";
+          if ($indice == 'prenom') {
+            echo "<h3>$infos</h3>";
+            } else {
+            echo "<p>$infos</p>";
+            }  
+        }
+        echo "</div>";
+        ?>
+        </div>
+        <!-- fin col  -->
     </section>
 
-    </div>
-    
+    <section class="row">
+
+    </section>
+        <div class="col-md-6">
+            <h2 class="text-primary text-decoration-underline">Tableaux multidimensionnels</h2>
+        </div>
+        <!-- fin col  -->
+    </section>
+    <!-- fin container  -->
     
 
     <?php require_once '../inc/footer.inc.php'?>
