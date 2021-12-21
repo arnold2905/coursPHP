@@ -1,4 +1,4 @@
-<?php require_once '../inc/functions.php'?>; 
+<?php require_once '../inc/functions.php'; ?>  
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,7 +17,7 @@
 <body>
     <header class="container-fluid-bg-light">
         <h1 class="display-4 text-center text-primary text-decoration-underline">CoursPHP - 04- Les Tableaux</h1>
-        <p class="lead text-center text-danger text-decoration-underline">Les tableaux représentent un type composé car ils permettent de stocker sous un même nom de variable plusieurs valeurs indépendantes.C'est comme un tiroir et ses compartiments. Chaque compartiment , que nous nommerons un élément du tableau , est répéré par un indice numérique (le premier ayant par défaut la valeur 0 et non 1).D'où l'expression du 'tableau indice".</p>
+        <p class="lead text-center text-danger text-decoration-underline w-75 mx-auto text-center">Les tableaux représentent un type composé car ils permettent de stocker sous un même nom de variable plusieurs valeurs indépendantes.C'est comme un tiroir et ses compartiments. Chaque compartiment , que nous nommerons un élément du tableau , est répéré par un indice numérique (le premier ayant par défaut la valeur 0 et non 1).D'où l'expression du 'tableau indice".</p>
     </header>
     <!-- fin container fluid  -->
 
@@ -130,11 +130,65 @@
 
     <section class="row">
 
-    </section>
         <div class="col-md-6">
             <h2 class="text-primary text-decoration-underline">Tableaux multidimensionnels</h2>
         </div>
         <!-- fin col  -->
+
+        <div class="col-md-6">
+            <h2 class="text-primary text-decoration-underline">Titre 2</h2>
+        </div>
+        <!-- fin col  -->
+    </section>
+    <!-- fin container  -->
+
+    <section class="row">
+        <div class="col-md-4">
+            <h2 class="text-primary text-decoration-underline">Tableau associatif dans un <code>SELECT</code></h2>
+            <p>Pour mettre le tableau associatif danbs un <code>SELECT</code>, avec un boucle <code>FOREACH</code> qui fabrique les <code>&lt;option value=""></code>de la balise select.
+            <code><br>
+            echo "&lt;label for=\"size2\">Tailles</label>&lt;select class=\"form-control w-25\">";<br>
+            foreach ( $tailles2 as $indice2 => $size2 ) { <br>
+                echo "<option value =\"$indice2\"> $size2 </option>";<br>
+            }
+            echo "&lt;/select>";
+            </code>
+            </p>
+        </div>
+        <!-- fin col  -->
+
+        <div class="col-md-4">
+            <h2 class="text-success text-decoration-underline">Exemple</h2>
+
+            <?php 
+            $tailles2 = [
+                'xs' => 'XS-extra-small',
+                's' => 'S-small',
+                'm' => 'M-extra-medium',
+                'l' => 'L-large',
+                'xl' => 'XL-extra-large',
+            ]; 
+            jevar_dump($tailles2);
+            ?>
+            <hr>
+        </div>
+        <!-- fin col  -->
+        <div class="col-md-4">
+            <h2 class="text-success text-decoration-underline">Boucle FOREACH</h2>
+            <?php 
+             echo "<hr><pre class=\"bg-info\">1\  TABLEAU 2 DANS UN SELECT</pre>";     
+
+             echo "<label for=\"size2\">Tailles</label><select class=\"form-control w-25\">";
+             foreach ( $tailles2 as $indice2 => $size2 ) {
+                 echo "<option value =\"$indice2\"> $size2 </option>";
+             }
+             echo "</select>";
+ 
+            ?>
+        </div>
+        <!-- fin col  -->
+
+
     </section>
     <!-- fin container  -->
     
