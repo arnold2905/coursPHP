@@ -57,7 +57,7 @@
                     echo "&lt;p class=\" alert alert-info w-75 mx-auto text-center\">";<br>
                     // OR ou OU 
                     if ( $e == 9 || $f > $g ) {<br>
-                        echo "Au moins une des 2 conditions est remplie ou vraie"&lt;/p>;
+                        echo "Au moins une des 2 conditions est remplie ou vraie"&lt;/p>;<br>
                     } else {
                         echo "Les 2 conditions sont fausses </p>";<br>
                     }<br>
