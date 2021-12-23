@@ -176,7 +176,7 @@
         <div class="col-md-4">
             <h2 class="text-success text-decoration-underline">Boucle FOREACH</h2>
             <?php 
-             echo "<hr><pre class=\"bg-info\">1\  TABLEAU 2 DANS UN SELECT</pre>";     
+            echo "<hr><pre class=\"bg-info\">1\  TABLEAU 2 DANS UN SELECT</pre>";     
 
              echo "<label for=\"size2\">Tailles</label><select class=\"form-control w-25\">";
              foreach ( $tailles2 as $indice2 => $size2 ) {
