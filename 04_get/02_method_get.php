@@ -30,7 +30,7 @@
                     echo "<h2>Votre produit : " .$_GET['article']. "</h2>";
                     echo "<div class=\"border border-primary w-50 p-4\">";
                     echo "<p>Produit : " .$_GET['article']. " *** Couleur : " .$_GET['couleur']. "</p>";// on affiche les valeurs
-                    echo "<p class=\"bg-success\">Prix : " .$_GET['prix']. " € </p>";
+                    echo "<p class=\"bg-info\">Prix : " .$_GET['prix']. " € </p>";
                     echo "</div>";
                 } else {
                     echo "<h2>Fiche produit</h2>";
