@@ -33,8 +33,8 @@
                     echo "<p class=\"bg-info\">Prix : " .$_GET['prix']. " € </p>";
                     echo "</div>";
                 } else {
-                    echo "<h2>Fiche produit</h2>";
-                    echo "<p class=\"alert alert-danger w-50\">Ce produit n'existe pas</p>";// sinon on affiche un message "ce produit n'existe pas"
+                    echo "<h2>Infos sur le produit</h2>";
+                    echo "<p class=\"alert alert-danger w-50\">Ce produit n'existe pas, <a href=\"01_method_get.php\"> Veuillez retourner sur la page des produits!</a></p>";// sinon on affiche un message "ce produit n'existe pas"
                 }
                 ?>
                
