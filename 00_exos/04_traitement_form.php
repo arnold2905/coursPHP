@@ -2,14 +2,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <title> CoursPHP - Exo - 04_Traitement_form</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
     
 </head>
@@ -44,7 +52,7 @@
                     echo "</div></section>";
 
                     // fabrication d'un fichier texte en l'absence de BDD
-                    $file = fopen('traitement.txt', 'a');// fopen() en mode "a" permet de créer un fichier s'il n'existe pas encore, sinon de l'ouvir
+                    $file = fopen('traitement.txt', 'a');// fopen() en mode "a" permet de créer un fichier s'il n'existe pas encore, sinon de l'ouvrir
                     $informations = "Informations reçues : " .$_POST['prenom']. ' ' .$_POST['nom']. ' ' .$_POST['email']. ' ' .$_POST['adresse']. "\n";
                     // "\n" permet de mettre un saut de ligne 
                     fwrite($file, $informations); // la variable $informations contient à chaque envoi les données du formulaire au fichier représenté par $file 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,13 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <title> CoursPHP - Les Types</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
     
 </head>
@@ -23,7 +31,7 @@
     <div class="container bg-white">
         <section class="row">
             <div class="col-sm-12 col-md-6">
-                <h2>Les types de données</h2>
+                <h2 class="text-primary text-decoration-underline">Les types de données</h2>
                 <ul>
                     <li>Les types de base :</li>
                         <ul>
@@ -47,7 +55,7 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
-                <h2>Les Opérateurs numériques</h2>
+                <h2 class="text-primary text-decoration-underline">Les Opérateurs numériques</h2>
                 <p>PHP offre un large éventail d’opérateurs utilisables avec des nombres. Les variables ou les nombres sur lesquels agissent ces opérateurs sont appelés les opérandes.</p>
 
                 <table class="table table-striped">
@@ -140,7 +148,7 @@
 
         <section class="row">
             <div class="col-md-6">
-                <h2>Le type <code>"boolean" ou boléen </code></h2>
+                <h2 class="text-primary text-decoration-underline">Le type <code>"boolean" ou boléen </code></h2>
                 <p>Le type booléen contient deux valeurs <code>TRUE ou FALSE ou 1 ou 0</code></p>
                 <?php
                     $a = 100;
@@ -149,7 +157,7 @@
                     echo "<div class=\"alert alert-info\">Si je ne vois pas le contenu de \$b = >>>> $b <<<<<< c'est que c'est faux , si je le vois c'est vrai.</div>"
                 ?>
 
-                <h3>Les opérateurs booléens</h3>
+                <h3 class="text-primary text-decoration-underline">Les opérateurs booléens</h3>
                     <p>Quand ils sont associés, les opérateurs booléens servent à écrire des expressions simples ou complexes, qui sont évaluées par une valeur booléenne TRUE ou FALSE. Ils seront utilisés dans les instructions conditionnelles.</p>
 
                     <table class="table table-striped">
@@ -235,7 +243,7 @@
 					</tbody>
 					</table>
 
-                    <h3>Les opérateurs logiques</h3>
+                <h3 class="text-primary text-decoration-underline">Les opérateurs logiques</h3>
 
 				<table class="table table-striped">
 				<thead>
@@ -292,7 +300,6 @@
 				</table>
                 <p>Attention !! Une erreur classique dans l’écriture des expressions conditionnelles consiste à confondre l’opérateur de comparaison == avec l’opérateur d'affectation =. L’usage des parenthèses dans la rédaction des expressions booléennes est souvent indispensable et toujours recommandé pour éviter les problèmes liés à l’ordre d’évaluation des opérateurs.</p>
 
-
             </div>
             <!-- fin col  -->
 
@@ -301,8 +308,8 @@
     </div>  
     <!-- fin container   -->
 
-
-    <!-- footer : fin de page  -->
+    
+    <!-- footer en require  -->
     <?php require_once '../inc/footer.inc.php'?>
 
     <!-- Optional JavaScript -->
