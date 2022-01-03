@@ -50,6 +50,7 @@
             <div class="col-md-6 border border-info border-1">
                 <h2 class="text-primary text-decoration-underline"> Exemples</h2>
                 <p><a href="02_method_get.php?article=jean&couleur=bleu&prix=50">Un jean bleu</a></p>
+                <!-- nom de la page? indice1=valeur1 & indice2=valeur2 -->
                 <p><a href="02_method_get.php?article=robe&couleur=rouge&prix=70">Une robe rouge</a></p>
                 <p><a href="02_method_get.php?article=pull&couleur=blanc&prix=60">Un pull blanc</a></p>
                 <p><a href="02_method_get.php?article=slip&couleur=blanc&prix=20">Un slip blanc</a></p>
@@ -60,7 +61,6 @@
                 
             </div>
             <!-- fin col  -->
-
             
         </section>
     </div>            
