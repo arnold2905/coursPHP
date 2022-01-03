@@ -129,7 +129,7 @@
                  $ligne = $requete->fetch( PDO::FETCH_ASSOC);
                  //jevar_dump($ligne);
 
-                 echo "<p> Nom : " .$ligne['prenom']. " " .$ligne['nom']. " - ID : " .$ligne['id_employes']. "<br>";
+                 echo "<p class=\"alert alert-success\"> Nom : " .$ligne['prenom']. " " .$ligne['nom']. " - ID : " .$ligne['id_employes']. "<br>";
                  echo "Salaire : " .$ligne['salaire']. " Euros - Service : ".$ligne ['service']. "<br>";
                  echo "Date d'embauche : " .$ligne['date_embauche']. " - Sexe : " .$ligne ['sexe']."</p>";
 
