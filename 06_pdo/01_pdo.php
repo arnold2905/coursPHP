@@ -105,8 +105,14 @@
         <section class="row">
             <div class="col-md-6 border border-success border-1">
                 <h3 class="text-primary text-decoration-underline">3- Faire des requêtes avec <code>query()</code></h3>
-                <p>La méthode <code>query()</code> est utilisée pour faire des requêtes qui retournent un ou plusieurs résultats: <code>SELECT</code></p>
-
+                <p>La méthode <code>query()</code> est utilisée pour faire des requêtes qui retournent un ou plusieurs résultats: <code>SELECT</code> mais aussi <code>UPDATE, INSERT, DELETE, </code></p>
+                <p>Pour information , on peut mettre dans les paramètres de <code>fetch()</code></p>
+                <ul>
+                    <li><code>PDO::FETCH_ASSOC</code> : pour obtenir un tableau associatif</li>
+                    <li><code>PDO::FETCH_NUM</code> : pour obtenir un tableau avec des indices numériques</li>
+                    <li><code>PDO::FETCH_OBJ</code> : pour obtenir un dernier objet</li>
+                    <li><code></code> : ou encore des parenthèses vides pour obtenir un mélange de tableau associatif et numérique</li>
+                </ul>
                 <?php 
                  // SELECT * FROM employes WHERE prenom='fabrice'
                  //1 - on demande des informations à  la BDD car il y a un ou plusieurs résultats
@@ -138,12 +144,112 @@
             <!-- fin col  -->
 
             <div class="col-md-6 border border-success border-1">
-                <h3 class="text-primary text-decoration-underline">Titre</h3>
+                <h3 class="text-primary text-decoration-underline">Faire des requêtes avec <code>query</code> et afficher plusieurs résultats</h3>
+
+                <?php 
+                // SELECT * FROM employes ORDER BY nom
+                $requete = $pdoENT ->query(" SELECT * FROM employes ORDER BY nom");
+                $nbr_employes = $requete->rowCount();
+                jevar_dump($nbr_employes);
+                echo "<p>Il y a $nbr_employes employes dans l'entreprise</p>";
+                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+                echo "<p>Nom : ".$ligne['prenom']. " " .$ligne['nom']." - service : " .$ligne['service']."</p>";  
+            
+                }
+                //Exo : Afficher la liste des différents services dans une ul en mettant un service par li
+                //afficher aussi le nombre de service
+                // SELECT DISTINCT (service) FROM employes ORDER BY service
+
+                $requete = $pdoENT->query("SELECT  DISTINCT  service FROM employes ;"); /* SELECT * FROM employes ORDER BY nom */
+                $service = $requete->rowCount(); /* Compter le nombre d'employer dans l'entreprise */
+                jevar_dump($service);
+                echo "<p>Il y a $service dans l'entreprise</p>";
+
+                echo "<ul>";
+                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+                echo '<li>' . $ligne['service'] . '</li>';
+                }
+                echo "</ul>";
+                // $nbr_employes = $requete->rowCount(); /* Compter le nombre d'employer dans l'entreprise */
+
+                jevar_dump($nbr_employes);
+
+                ?>
             </div>
 
         </section>
         <!-- fin row  -->
-    </div>            
+
+        <section class="row">
+                <div class="col-md-12">
+                <!-- Exi 1 : Dans une h2 affichez la phrase suivante " Il y a X employés dans l'entreprise"  -->
+                <!-- Puis affichez toutes informations des employés dans un tableau html  -->
+                <!-- La requête est ensuite triée par sexe et ensuite par nom de famille  -->
+                
+                <?php 
+                $requete = $pdoENT->query("SELECT * FROM employes ORDER BY sexe ASC, nom ASC");
+                $nbr_employes = $requete->rowCount();
+                //jevar_dump($nbr_employes);
+
+                echo "<h2 class=\"alert alert-warning text-primary\">Il y a $nbr_employes employés dans l'entreprise</h2>";
+
+                echo "<table class=\"table table-striped\">";
+                echo "<tr>";
+                    echo "<th>Id</th>";
+                    echo "<th>Nom, prénom</th>";
+                    echo "<th>Service</th>";
+                    echo "<th>Salaire mensuel</th>";
+                    echo "<th>Date embauche</th>";
+                echo "</tr>";
+                while ( $ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+
+                    echo "<tr><td> n° " .$ligne['id_employes']. "</td>";
+                    // if ...else
+                    if ( $ligne['sexe'] == 'f') {
+                        echo "<td>Mme";
+                    } else {
+                        echo "<td>M.";
+                    }
+
+                    echo $ligne['prenom']." " .$ligne['nom']."</td>";
+                    echo "<td>" .$ligne['service']."</td>";
+                    echo "<td>" .$ligne['salaire']. " € </td>";
+                    echo "<td>" .$ligne['date_embauche']. " </td></tr>";
+                }
+                echo "</table>";
+                ?>
+
+                <hr>
+
+                <table class= "table table-striped table-success">
+                <tr>
+                    <th>Nom, prénom</th>
+                    <th>Service</th>
+                </tr>
+                <?php 
+                
+                    foreach ( $pdoENT->query ( "SELECT nom, prenom, sexe, service FROM employes ORDER BY sexe ASC, nom ASC") as $infos) {
+                        // $infos fabrique un tableau à chaque tour de boucle pour chaque enrégistrement
+                        // jevar_dump($infos);
+                        echo "<tr>";
+                        // if ...else
+                        if( $infos['sexe'] == ' f ') {
+                            echo "<td>Mme ";
+                        } else {
+                            echo "<td>M. ";
+                        }
+                        echo $infos['nom']. " " .$infos['prenom']. "</td><td>" .$infos['service']. "</td><td>";
+                    } 
+                ?>
+                </table>
+            </div>
+            <!-- fin col  -->
+        </section>
+        <!-- fin row  -->
+
+    </div> 
+    <!-- fin container  -->
+
     
     <!-- footer en require  -->
     <?php require_once '../inc/footer.inc.php'?>
