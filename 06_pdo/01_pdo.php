@@ -242,11 +242,93 @@
                     } 
                 ?>
                 </table>
+
+                <hr>
+
+                <?php 
+                    $resultat = $pdoENT->query("SELECT * FROM employes ORDER BY id_employes");
+                    $nombre_employes = $resultat->rowCount();
+                    //jevar_dump($nombre_employes);
+                    echo '<h5 class="text-primary text-decoration-underline"> Il y a '  .$nombre_employes. ' collaborateurs dans l\'entreprise</h5>'; 
+                    // les lignes d'en-tête du tableau
+                    echo '<table class="table table striped table-dark">';
+                    echo '<thead><tr>';
+                    echo '<th>ID</th>';
+                    echo '<th>Nom</th>';
+                    echo '<th>Prénom</th>';
+                    echo '<th>Sexe</th>';
+                    echo '<th>Service</th>';
+                    echo '<th>Date d\'entrée</th>';
+                    echo '<th>Salaire</th>';
+                    echo '</tr></thead>';
+                    echo '<tbody>';
+
+                    // boucle while avec foreach
+                    while ( $employes = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<tr>';
+                        foreach ($employes as $informations) {
+                            echo '<td>' .$informations. '</td>';
+                        }
+                        echo '</tr>';
+                    }
+                    echo '</tbody></table>';
+                ?>
             </div>
             <!-- fin col  -->
         </section>
         <!-- fin row  -->
 
+
+        <section class="row p-2">
+            <div class="col-md-10 bg-cyan">
+                <h2>5 - Faire des requêtes préparées avec <code>prepare()</code></h2>
+                <p>Les requêtes prtéparées sont préconisées si vous exécutez plusieurs fois la même reqûete : pour un gain de temps.</p>
+                <p>Elles permettent de "nettoyer" les données et de se prémunir des injections de type SQL qui sont des trentatives de piratage : cf. le chapitre 09 . </p>
+
+                <?php 
+                    // on cherche un resultat
+                    $nom = 'Lagarde';
+                    // l'on prépare la requête
+
+                    $resultat = $pdoENT->prepare("SELECT * FROM employes WHERE nom = :nom"); // :nom est un marqueur vide pour le moment
+                    $resultat->bindParam(':nom', $nom);// on fait la liaison du marqueur
+                    $resultat->execute();// on exécute la requête
+                    $employes = $resultat->fetch(PDO::FETCH_ASSOC);
+                    jevar_dump($employes);
+                    echo '<p>' .$employes['nom']. ' ' .$employes['prenom']. ' , ' .$employes['service']. ' Date d\'embauche: ' .$employes['date_embauche']. '</p>';
+
+                    echo '<hr>';
+
+                    $sexe = 'f';
+                    $resultat = $pdoENT->prepare(" SELECT * FROM employes WHERE sexe = :sexe ");
+                    $resultat->bindParam( ':sexe', $sexe);// on lie le marqueur
+                    $resultat->execute();// on exécute la requête
+                    $nombre_employes = $resultat->rowCount();
+                    //jevar_dump($nombre_employes);
+
+                    echo '<h4> Il y a' .$nombre_employes. ' résultats </h4>';
+                    while ( $informations = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        //echo $informations['nom'];
+                        echo '<p>' .$informations['nom']. ' ' .$informations['prenom']. ' , ' .$informations['service']. ' Date d\'embauche: ' .$informations['date_embauche']. '</p>';
+                    }
+
+                    echo '<hr>';
+
+                    // requête préparée sans "bindParam()"
+                    $resultat = $pdoENT->prepare(" SELECT * FROM employes WHERE nom = :nom AND prenom = :prenom ");
+                    $resultat->execute(array(
+                        ':nom' => 'Blanchet',
+                        ':prenom' => 'Laura',
+                    ));
+                    //jevar_dump($resultat);
+
+                    $informations = $resultat->fetch(PDO::FETCH_ASSOC);
+
+                    echo '<p>' .$informations['nom']. ' ' .$informations['prenom']. ' , ' .$informations['service']. ' Date d\'embauche: ' .$informations['date_embauche']. '</p>';
+
+                ?>
+            </div>
+        </section>
     </div> 
     <!-- fin container  -->
 
