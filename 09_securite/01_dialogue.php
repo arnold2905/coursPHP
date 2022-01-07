@@ -1,4 +1,16 @@
-<?php require_once '../inc/functions.php'; // appel du fichier de fonctions ?>
+<?php require_once '../inc/functions.php'; // appel du fichier de fonctions 
+
+$pdoDIA = new PDO( 'mysql:host=localhost;dbname=dialogue',
+'root', 
+'', 
+array(
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, 
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' 
+));
+
+//jevar_dump($pdoDIA);
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,7 +43,7 @@
     
     <div class="container bg-light">
         <section class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 border border-info border-1">
             <h2 class="text-primary text-decoration-underline">Création d'une BDD</h2>
             <ul>
                 <li>Nom de la BDD: dialogue</li>
@@ -42,13 +54,60 @@
                 <li>message : TEXT</li>
                 <li>date_enregistrement : DATETIME</li>
             </ul>
+            <h2 class="text-primary text-decoration-underline"></h2>
+            <ul>
+                <li>Se connecter à la base de données</li>
+                <li>Afficher toutes les donnéers ndepuis la table commentaires</li>
+                <li>Avec query() et la boucle while</li>
+                <li>Compter les enrégistrements</li>
+                <li>Et afficher les commentaires dans un tableau HTML</li>
+            </ul>
             
+            <h2 class="text-primary text-decoration-underline">3- Insertion des données</h2>
+            <ul>
+                <li>Faire un formulaire HTML</li>
+                <li></li>
+                <li></li>
+            </ul>
             </div> 
             <!-- fin col  -->
             
             <div class="col-md-6 border border-info border-1">
-                <h2 class="text-primary text-decoration-underline"></h2>
+                <h2 class="text-primary text-decoration-underline">Afficher les données</h2>
+
+                <?php 
+                $resultat = $pdoDIA->query(" SELECT * FROM commentaires ");
+                //jevar_dump($resultat);
+                $nbr_commentaires = $resultat->rowCount();
+                //jevar_dump($nbr_commentaires);
+                ?>
  
+                <h5 class="text-danger"> Il ya <?php echo $nbr_commentaires; ?> commentaires</h5>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Pseudo</th>
+                            <th>Message</th>
+                            <th>Date d'enrtegistrement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ouverture de la boucle while  -->
+                        <?php 
+                         while ( $commentaires = $resultat->fetch( PDO::FETCH_ASSOC)) { ?>
+                         <tr>
+                             <td><?php echo $commentaires['id_commentaires']; ?></td>
+                             <td><?php echo $commentaires['pseudo'];?></td>
+                             <td><?php echo $commentaires['message'];?></td>
+                             <td><?php echo $commentaires['date_enregistrement'];?></td>
+                         </tr>
+                         <!-- fermeture de la boucle  -->
+                        <?php } ?>
+                    </tbody>
+                </table>
+
             </div>
             <!-- fin col  -->
 
@@ -58,6 +117,34 @@
             <!-- fin col  -->
             
         </section>
+        <!-- fin row  -->
+
+        <section class="row">
+
+        <div class="col-md-8">
+            <h5>Insertion d'un message</h5>
+            <form action="" method="POST">
+
+            <div class="fmb-3">
+                <label for="pseudo">Votre pseudo</label>
+                <input type="text" name="pseudo" id="pseudo" class="form-group"  required>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-group">Votre message</label>
+                <textarea name="message" id="message" cols="30" rows="5" class="form-group" required></textarea>
+            </div>
+
+            <div class="row sb-2">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mb-3">Envoyez votre message</button>
+                </div>
+            </div>
+            </form>
+
+        </div>
+        </section> 
+
     </div>            
 
 
