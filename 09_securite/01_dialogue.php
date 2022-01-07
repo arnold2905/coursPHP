@@ -1,14 +1,36 @@
 <?php require_once '../inc/functions.php'; // appel du fichier de fonctions 
 
 $pdoDIA = new PDO( 'mysql:host=localhost;dbname=dialogue',
-'root', 
-'', 
+'root', // pseudo
+'', // mot de passe
 array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, 
-    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' 
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // afficher les erreurs dans le navigateur
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // charset des échanges avec la BDD
 ));
 
 //jevar_dump($pdoDIA);
+//jevar_dump(get_class_methods($pdoDIA));
+
+// TRAITEMENT DU FORMULAIRE (version basique)
+
+//if ( $_POST ) {
+//    jevar_dump($_POST);
+//    $insertion = $pdoDIA->query( " INSERT INTO commentaires (pseudo, message, date_enregistrement) VALUES ('$_POST[pseudo]','$_POST[message]', NOW())");
+//}
+
+// TRAITEMENT DU FORMULAIRE
+
+if (!empty($_POST)) { // si $_POST n'est pas vide
+   $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']); // pour se prémunir des failles et des injections SQL
+   $_POST['message'] = htmlspecialchars($_POST['message']);
+
+   $insertion = $pdoDIA->prepare("INSERT INTO commentaires (pseudo, message, date_enregistrement) VALUES (:pseudo, :message, NOW())"); // requête préparée avec des marqueurs
+
+   $insertion->execute( array(
+       ':pseudo' => $_POST['pseudo'],
+       ':message' => $_POST['message'],
+   ));
+}
 
 ?>
 <!DOCTYPE html>
@@ -121,11 +143,11 @@ array(
 
         <section class="row">
 
-        <div class="col-md-8">
-            <h5>Insertion d'un message</h5>
-            <form action="" method="POST">
+        <div class="col-md-6">
+            <h5 class="text-primary text-decoration-underline">Insertion d'un message</h5>
+            <form action="" method="POST" class="border border-primary border-1">
 
-            <div class="fmb-3">
+            <div class="mb-3">
                 <label for="pseudo">Votre pseudo</label>
                 <input type="text" name="pseudo" id="pseudo" class="form-group"  required>
             </div>
@@ -144,11 +166,11 @@ array(
 
         </div>
         </section> 
+        <!-- fin row  -->
 
-    </div>            
+    </div> 
+    <!-- fin container -->
 
-
-    
     <!-- footer en require  -->
     <?php require_once '../inc/footer.inc.php'?>
 
