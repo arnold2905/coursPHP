@@ -11,12 +11,12 @@ $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',// hôte nom BDD
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // afficher les erreurs dans le navigateur
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // charset des échanges avec la BDD
             ));
-              // debug($pdoENT);
-              // debug(get_class_methods($pdoENT));
+              // jevar_dump($pdoENT);
+              // jevar_dump(get_class_methods($pdoENT));
 
 // 3 TRAITEMENT DU FORMULAIRE
 if (!empty($_POST)) {
-    // debug($_POST);
+    // jevar_dump($_POST);
     $_POST['prenom'] = htmlspecialchars($_POST['prenom']);// pour se prémunir des failles et des injections SQL
 	$_POST['nom'] = htmlspecialchars($_POST['nom']);
 	$_POST['sexe'] = htmlspecialchars($_POST['sexe']);
@@ -72,9 +72,9 @@ if (!empty($_POST)) {
             <?php
 			// 3 affichage de données 
               $requete = $pdoENT->query( " SELECT * FROM employes ORDER BY id_employes DESC  " );
-              // debug($resultat);
+              // jevar_dump($resultat);
               $nbr_employes = $requete->rowCount();
-              // debug($nbr_commentaires);
+              // jevar_dump($nbr_commentaires);
             ?>
             <h5 class= "alert alert-warning text-primary">Il y a <?php echo $nbr_employes; ?> employés </h5>
 
