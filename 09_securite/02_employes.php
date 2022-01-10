@@ -68,7 +68,7 @@ if (!empty($_POST)) {
         <section class="row">
   
           <div class="col-md-6">
-            <h2>les employés</h2>
+            <h2 class="text-primary text-decoration-underline">les employés</h2>
             <?php
 			// 3 affichage de données 
               $requete = $pdoENT->query( " SELECT * FROM employes ORDER BY id_employes DESC  " );
@@ -76,7 +76,7 @@ if (!empty($_POST)) {
               $nbr_employes = $requete->rowCount();
               // debug($nbr_commentaires);
             ?>
-            <h5>Il y a <?php echo $nbr_employes; ?> employés </h5>
+            <h5 class= "alert alert-warning text-primary">Il y a <?php echo $nbr_employes; ?> employés </h5>
 
             <table class="table table-striped">
              <thead>
@@ -100,7 +100,7 @@ if (!empty($_POST)) {
 				   <td><?php echo $ligne['service']; ?></td>
 				   <td><?php echo $ligne['salaire']; ?></td>
 				   <td><?php echo $ligne['date_embauche']; ?></td>
-                   <td><a href="03_fiche_employe.php?id_employe=<?php echo $ligne['id_employes']; ?>">Fiche</a></td>
+          <td><a href="03_fiche_employe.php?id_employes=<?php echo $ligne['id_employes']; ?>">Maj</a></td>
 			   </tr>
 			   <!-- fermeture de la boucle -->
 			   <?php } ?>
@@ -110,7 +110,7 @@ if (!empty($_POST)) {
           <!-- fin col -->
   
           <div class="col-md-6">
-            <h2>Nouvel employé</h2>
+            <h2 class="text-primary text-decoration-underline">Nouvel employé</h2>
             <!-- action vide car nous envoyons les données avec cette même page et POST va envoyer dans la superglobale $_POST -->
 			<form action="" method="POST" class="border border-primary p-1">
             <div class="mb-3">

@@ -13,12 +13,13 @@ array(
 
 // TRAITEMENT DU FORMULAIRE (version basique)
 
+// ok');DELETE FROM commentaires;( // requête malveillante à insérer après la dernière ligne de code SQL
 //if ( $_POST ) {
 //    jevar_dump($_POST);
-//    $insertion = $pdoDIA->query( " INSERT INTO commentaires (pseudo, message, date_enregistrement) VALUES ('$_POST[pseudo]','$_POST[message]', NOW())");
+//    $insertion = $pdoDIA->query( " INSERT INTO commentaires (pseudo, message, date_enregistrement) VALUES ('$_POST[pseudo]',NOW(),'$_POST[message]')");
 //}
 
-// TRAITEMENT DU FORMULAIRE
+// TRAITEMENT DU FORMULAIRE SECURISE
 
 if (!empty($_POST)) { // si $_POST n'est pas vide
    $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']); // pour se prémunir des failles et des injections SQL
