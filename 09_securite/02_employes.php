@@ -11,8 +11,8 @@ $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',// hôte nom BDD
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // afficher les erreurs dans le navigateur
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // charset des échanges avec la BDD
             ));
-              // jevar_dump($pdoENT);
-              // jevar_dump(get_class_methods($pdoENT));
+              // jevar_dump($pdoENT);  // jevar_dump(get_class_methods($pdoENT));
+            
 
 // 3 TRAITEMENT DU FORMULAIRE
 if (!empty($_POST)) {
