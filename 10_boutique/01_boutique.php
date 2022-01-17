@@ -1,6 +1,5 @@
 <?php require_once '../inc/functions.php'; // 1 FONCTIONS
 
-session_start(); // ici la session n'est pas recréée car elle existe déjà grâce au 'session_star()' Lancé dans le fichier 01_session.php
 ?>
 
 <!doctype html>
@@ -13,7 +12,7 @@ session_start(); // ici la session n'est pas recréée car elle existe déjà gr
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>CoursPHP - Chapitre 08 - 02 Session</title>
+    <title>CoursPHP - Chapitre x - 01 Boutique</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,10 +25,8 @@ session_start(); // ici la session n'est pas recréée car elle existe déjà gr
 <body> 
 <main>
     <header class="container-fluid f-header p-2">
-      <h1 class="display-4 text-center text-primary text-decoration-underline">CoursPHP - Chapitre 08 - 02 Session</h1>
-      <p class="lead text-center text-danger text-decoration-underline">La session est déjà ouverte et accessible dans tous les scripts du site</p>
-
-      jevar_dump($_SESSION);
+      <h1 class="display-4 text-center text-primary text-decoration-underline">CoursPHP - Chapitre x - 01 Boutique</h1>
+      <p class="lead text-center text-danger text-decoration-underline"></p>
     </header> 
     <!-- fin container-fluid header  -->
     <div class="container bg-white mt-2 mb-2 m-auto p-2">
@@ -37,8 +34,7 @@ session_start(); // ici la session n'est pas recréée car elle existe déjà gr
         <section class="row">
   
         <div class="col-md-6">
-            <h2 class="text-primary text-decoration-underline">Avantage d'une session</h2> 
-            <p>La session est disponible partout sur les pages d'un site</p>
+            <h2 class="text-primary text-decoration-underline">Titre</h2>   
         </div>
           <!-- fin col -->
   
@@ -46,7 +42,7 @@ session_start(); // ici la session n'est pas recréée car elle existe déjà gr
             <h2 class="text-primary text-decoration-underline">Titre</h2>
         </div>
           <!-- fin col -->
-        </section>
+          </section>
         <!-- fin row -->  
     </div>
       <!-- fin container  -->
