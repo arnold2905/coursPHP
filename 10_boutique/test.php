@@ -1,4 +1,16 @@
-<?php require_once '../inc/functions.inc.php'; // 1 FONCTIONS
+<?php require_once 'inc/functions.inc.php'; // 1 FONCTIONS
+
+$host = 'localhost';//le chemin vers le serveur de données
+$database = 'maboutique';//le nom de la BDD
+$user = 'root';//le nom d'utilisateur pour se connecter
+// $psw = '';//mdp PC XAMPP
+$psw = '';// mdp pour MAC 
+
+$pdoMAB = new PDO('mysql:host='.$host.';dbname='.$database,$user,$psw,
+array(
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,// pour afficher les erreurs SQL dans le navigateur
+  PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',// pour définir le charset des échanges avec la BDD
+));
 
 ?>
 
@@ -34,7 +46,37 @@
         <section class="row">
   
         <div class="col-md-6">
-            <h2 class="text-primary text-decoration-underline">Titre</h2>   
+            <h2 class="text-primary text-decoration-underline">Titre</h2>  
+
+            <?php
+                
+                $requete = $pdoMAB->query(" SELECT * FROM produits ");
+                $nbr_produits = $requete->rowCount();
+                echo "<h3>Il y a $nbr_produits produits dans la boutique: </h3>";
+
+                // $requete = $pdoENT->query($sql);
+
+                echo "<table class=\"table table-striped\">";
+                echo "<thead class=\"table-info border-primary\">";
+                echo "<tr>";
+                echo "<th style=\"background-color: yellow; color:black; text-align:center;\" scope=\"col\">ID</th>";
+                echo "<th scope=\"col\">Référence</th>";
+                echo "<th scope=\"col\">Titre</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+                    // echo $ligne['service']."<br>";
+                    echo "<tr>";
+                    echo "<td>" . $ligne['id_produit'] . "</td>";
+                      echo "<td>" . $ligne['reference'] . "</td>";
+                      echo "<td>" . $ligne['titre'] . "</td>";
+
+                    // ucfirst() pour mettre la première lettre d'un mot en majuscule
+                }
+                echo "</tbody>";
+                echo "</table>";
+                ?> 
         </div>
           <!-- fin col -->
   
