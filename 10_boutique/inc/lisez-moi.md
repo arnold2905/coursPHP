@@ -47,3 +47,8 @@ public (enum, 'm' , 'f' , 'mixte')
 photo
 prix
 stock
+
+schema BDD
+
+PAGE INSCRIPTION
+faire un formulaire qui servira à l'inscription d'un utilisateur
