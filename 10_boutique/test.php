@@ -54,8 +54,6 @@ array(
                 $nbr_produits = $requete->rowCount();
                 echo "<h3>Il y a $nbr_produits produits dans la boutique: </h3>";
 
-                // $requete = $pdoENT->query($sql);
-
                 echo "<table class=\"table table-striped\">";
                 echo "<thead class=\"table-info border-primary\">";
                 echo "<tr>";
@@ -66,7 +64,7 @@ array(
                 echo "</thead>";
                 echo "<tbody>";
                 while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-                    // echo $ligne['service']."<br>";
+                    // echo $ligne['id_produit']."<br>";
                     echo "<tr>";
                     echo "<td>" . $ligne['id_produit'] . "</td>";
                       echo "<td>" . $ligne['reference'] . "</td>";

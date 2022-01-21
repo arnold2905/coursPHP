@@ -46,7 +46,7 @@ array(
         <section class="row">
   
         <div class="col-md-6">
-            <h2 class="text-primary text-decoration-underline">Créez votre compte !</h2> 
+            <h2 class="text-white text-center bg-info text-decoration-underline">Créez votre compte !</h2> 
 
             <form action="" method="POST" class="border border-primary p-1">
 
@@ -57,14 +57,16 @@ array(
                 <input type="radio" name="sexe" value="f" id="sexe"> Femme
             </div>
 
-            <div class="mb-3">
-                <label for="prenom" class="form-label">Prénom</label>
-                <input type="text" name="prenom" id="prenom" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom de famille</label>
-                <input type="text" name="nom" id="nom" class="form-control" required>
+            <div class="row g-3 mb-2">
+                <div class="col-md-6 mb-3">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" name="prenom" id="prenom" class="form-control" required>
+                </div>
+                    
+                <div class="col-md-6 mb-3">
+                    <label for="nom" class="form-label">Nom de famille</label>
+                    <input type="text" name="nom" id="nom" class="form-control" required>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -93,7 +95,7 @@ array(
 
             <div class="row sb-2">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary mb-3">Validez la création</button>
+                    <button type="submit" class="btn btn-success mb-3">Validez la création</button>
                 </div>
             </div>
 
