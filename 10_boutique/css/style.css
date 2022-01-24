@@ -1,0 +1,11 @@
+/* Feuille de style pour le dossier 'Boutique'  */
+
+body {
+    font-family: 'Aclonica', sans-serif;
+    font-family: 'Playfair Display', serif;
+    background-color: lightcyan;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'EB Garamond', serif;
+}

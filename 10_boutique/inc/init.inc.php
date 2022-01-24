@@ -20,11 +20,13 @@ array(
 //var_dump(get_class_methods($pdoMAB));
 
 // 2 - OUVERTURE DE SESSION
+session_start();
 
 
 // 3 - CHEMIN DU SITE DANS UNE CONSTANTE
 
 // 4 - UNE VARIABLE POUR LES MESSAGES
+$contenu = '';
 
 // 5 -INCLUSION DES FONCTIONS
 
