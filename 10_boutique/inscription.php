@@ -1,16 +1,18 @@
 <?php require_once 'inc/init.inc.php'; // 1 require connexion, session etc...
 
 //jevar_dump($_SESSION);
+// 1 - les "if" qui suivent vérifient si les valeurs passsées dans le "$_POST" correspondent à ce qui est attendu et autorisé dans la BDD
+
 
 if (!empty($_POST)) {
     //jevar_dump($_POST);
 
-    if ( !isset($_POST['civilite']) || $_POST['civilite'] != 'm' && $_POST['civilite'] != 'f') {
-        $contenu .='<div class="alert alert-danger">La civilité n\'est pas valable !</div>';
+    if ( !isset($_POST['civilite']) || $_POST['civilite'] != 'm' && $_POST['civilite'] != 'f') { // && ET
+        $contenu .='<div class="alert alert-danger">La civilité n\'est pas valable !</div>'; // 2ex. s'il n'y a rien dans le "$_POST" ['civilite] ou s'il contient soit 'm' et soit 'f' (qui sont des valeurs autorisées) ; je ne remplis pas "$contenu"
     }
 
     if ( !isset ($_POST['prenom']) || strlen($_POST['prenom']) < 2 || strlen($_POST['prenom'])  > 20) {
-        // isset n'est pas isset, .= concaténation piuis affectation, || ou, strlen string length qui vérifie la longueur de la chaîne de caractères
+        // isset n'est pas isset, .= concaténation puis affectation, || ou, strlen string length qui vérifie la longueur de la chaîne de caractères
         $contenu .='<div class="alert alert-danger">Votre prénom doit faire entre 2 et 20 caractères</div>';
     }
 
@@ -25,6 +27,7 @@ if (!empty($_POST)) {
     }
 
     if ( !isset ($_POST['pseudo']) || strlen($_POST['pseudo']) < 4 || strlen($_POST['pseudo'])  > 20) {
+        // strlen => longueur de la chaîne de caractères
         $contenu .='<div class="alert alert-danger">Votre nom de famille doit faire entre 4 et 20 caractères</div>';
     }
 
@@ -37,6 +40,7 @@ if (!empty($_POST)) {
     }
 
     if ( !isset($_POST['code_postal']) || !preg_match( '#[0-9]{5}$#', $_POST['code_postal']) ) {
+        // preg_match() vérifie si la chaîne de caractères est constituée des caractères autorisés dans le premier paramètre '#[0-9]{5}$#'
         $contenu .='<div class="alert alert-danger">Le code postaln\'est pas valable !</div>';
     }
 
@@ -48,10 +52,10 @@ if (!empty($_POST)) {
         $membre = executeRequete( " SELECT * FROM membres WHERE pseudo = :pseudo ", 
                                         array(':pseudo' => $_POST['pseudo']));
         
-        if ($membre->rowCount() > 0) {
+        if ($membre->rowCount() > 0) { // si au décompte de cette requête le résultat ne donne pas 0, c'est que le pseudo exite
             $contenu .='<div class="alert alert-danger">Le pseudo est indisponible ; veuillez en choisir un autre!</div>';
-        } else {
-            $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT); //bcrypt
+        } else { // sinon on exécute la requête d'insertion
+            $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT); //bcrypt .....on hâche le mot de passe avec la fonction prédéfinie "password_hash()" avec un algorithme "bcrypt" on passe cette information en variable
 
             $succes = executeRequete ( " INSERT INTO membres (civilite, prenom, nom, email, pseudo, mdp, adresse, code_postal, ville, statut) VALUES (:civilite, :prenom, :nom, :email, :pseudo, :mdp, :adresse, :code_postal, :ville, 0)", 
             array(
@@ -60,15 +64,24 @@ if (!empty($_POST)) {
                 ":nom" => $_POST['nom'],
                 ":email" => $_POST['email'],
                 ":pseudo" => $_POST['pseudo'],
-                ":mdp" => $mdp,
+                ":mdp" => $mdp, // ici on récupère le mdp de la variable qui contient le hash du  mot de passe
                 ":adresse" => $_POST['adresse'],
                 ":code_postal" => $_POST['code_postal'],
                 ":ville" => $_POST['ville'],
             ));
+
+            // AJOUTER LORS DE LA MISE EN LIGNE LA FONCTION MAIL
+            if ($succes) {
+                $contenu .='<div class="alert alert-success">Vous êtes bien inscrit à La boutique!<br> <a href="connexion.php">Cliquez ici pour vous connecter!</a></div>'; 
+            } else {
+                $contenu .='<div class="alert alert-danger">Erreur lors de l\'inscription!</div>';
+            }
         }                              
     }
 
 }
+
+//A FAIRE: rajouter required sur le schamps du formulaire, puis ralouter un second champ 'mdp' pour vérifier si le mdp saisi est identique à celui saisi préalablement 
 
 $host = 'localhost';//le chemin vers le serveur de données
 $database = 'maboutique';//le nom de la BDD

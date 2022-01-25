@@ -9,19 +9,19 @@ function jevar_dump($mavar) { // la fonction avec son paramètre, une variable
 }
 
 
-//2- FONCTION POUR EXECUTER LES REQUETES PREPAREES (Une requête préparée dans une fonction)
-function executeRequete( $requete, $parametres = array()) {
-    foreach ($parametres as $indice => $valeur) {
-        $parametres[$indice] = htmlspecialchars($valeur);
-        global $pdoMAB;
+//2- FONCTION POUR EXECUTER LES REQUETES PREPAREES AVEC FOREACH (Une requête préparée dans une fonction)
+function executeRequete( $requete, $parametres = array()) {// utile pour toutes les requêtes 1 la requête 2
+    foreach ($parametres as $indice => $valeur) { // boucle foreach
+        $parametres[$indice] = htmlspecialchars($valeur); // pour éviter les injections sql
+        global $pdoMAB; // "global" nous permet d'accéder à la variable "$pdoMAB" dans l'espace global du fichier init.inc.php
 
-        $resultat = $pdoMAB->prepare($requete);
-        $succes = $resultat->execute($parametres);
+        $resultat = $pdoMAB->prepare($requete); // prépare la requête
+        $succes = $resultat->execute($parametres); //et exécute
 
         if ($succes === false) {
-            return false;
+            return false; // si la requête n'a pas marché , je renvoie "false"
         } else {
-            return $resultat;
+            return $resultat; // sinon , je renvoie les résultats de la requête
         } // fin if else 
     } // fin foreach
 } // fin fonction
