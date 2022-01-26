@@ -168,13 +168,20 @@ array(
                     <label for="pseudo">Choisissez un pseudo*</label>
                     <input type="text" name="pseudo" id="pseudo" class="form-group">
                 </div>
+            </div>
+
+            <div class="row g-2 mb-2">
                 <div class="col-md-6 mb-3">
-                    <label for="mdp">Votre mot de passe*</label>
-                    <input type="text" name="mdp" id="mdp" class="form-group">
+                    <label for="mdp"id="placeholder1" >Votre mot de passe*</label>
+                    <input type="text" name="mdp" id="mdp" class="form-group" placeholder="Votre mot de passe">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="confmdp" id="placeholder2" >Confirmez votre mot de passe*</label>
+                    <input type="text" name="confmdp" id="confmdp" class="form-group" placeholder="Confirmez votre mot de passe!">
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="col md-6 mb-3">
                 <label for="adresse" class="form-label">Votre Adresse</label>
                 <textarea name="adresse" id="adresse" class="form-control" rows="3"></textarea>
             </div>
@@ -218,5 +225,8 @@ array(
      
       <!-- Option 1: Bootstrap Bundle with Popper -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+      <script src="inscription.js"></script>
+
   </body>
 </html>
