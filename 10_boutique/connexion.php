@@ -1,4 +1,54 @@
+<?php require_once 'inc/init.inc.php'; // 1 require connexion, session etc...
 
+//jevar_dump($_SESSION);
+
+// 2- 
+
+// 3- 
+
+// 1- TRAITEMENT DU FORMULAIRE DE CONNEXION
+
+jevar_dump($_POST);
+
+if (!empty($_POST)) {
+  if (empty($_POST['pseudo'])) {
+    $contenu .='<div class="alert alert-danger">Le pseudo est requis!</div>';
+  }
+
+  if (empty($_POST['mdp'])) {
+    $contenu .='<div class="alert alert-danger">Le mdp est requis!</div>';
+  }
+  if (empty($_contenu)) {
+    $_resultat = executeRequete( "SELECT * FROM membres WHERE pseudo = :pseudo",
+                      array(
+                          ':pseudo' => $_POST['pseudo'],
+                          //':mdp' => $_POST['mdp'],
+                      ));
+
+    if ( $_resultat -> rowCount() == 1 )  {
+      $_membre = $_resultat->fetch( PDO::FETCH_ASSOC);
+      jevar_dump($_membre);
+
+       if(password_verify($_POST['mdp'],$_membre['mdp'])) {
+         //echo'salut le membre';
+         $_SESSION['membre'] = $_membre;
+
+         jevar_dump($_SESSION);
+
+         header('location:profil.php'); // voir
+         exit();
+       } else {
+        $contenu .='<div class="alert alert-danger">Erreur sur les identifiants!</div>';
+       }
+    }   else {
+      $contenu .='<div class="alert alert-danger">Erreur sur les identifiants!</div>';
+    }  
+
+  } // fin if empty $contenu
+
+} // fin vérification formulaire
+
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -35,24 +85,54 @@
     <!-- fin container-fluid header  -->
     <div class="container bg-white mt-2 mb-2 m-auto p-2">
   
-        <section class="row">
+        <section class="row justify-content-center">
   
         <div class="col-md-6 p-2">
-            <h2 class="text-white text-center bg-primary text-decoration-underline">Titre</h2> 
-           
+            <h2 class="text-white text-center bg-primary text-decoration-underline">Connexion à votre espace</h2>
+         
+            <?php echo $contenu ?>
+            
+      <form action="" method="POST" class="border border-primary p-1">
+
+        <div class="col-md-6 mb-3">
+
+        <div class="row g-2 mb-3">
+          <label for="pseudo" class="form-label">Pseudo*</label>
+          <input type="text" name="pseudo" placeholder="pseudo"class="form-control">
+        </div>
+
+        <div class="row g-2 mb-2">
+          <div class="col-md-6 mb-3">
+            <label for="mdp">Votre mot de passe*</label>
+            <input type="password" name="mdp" id="mdp" class="form-group" placeholder="Votre mot de passe">
+          </div>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">Rester connecté </label>
+        </div>
+
+        <div class="row sb-2">
+          <div class="col">
+            <button type="submit" class="btn btn-success mb-3">Connectez-vous</button>
+          </div>
+
+        </form> 
+        <!-- fin formulaire  --> 
         </div>
           <!-- fin col -->
   
         </section>
         <!-- fin row -->  
 
-        <section class="row">
-        <div class="col-md-6">
-            <h2 class="text-primary text-decoration-underline">Titre</h2>
-        </div>
+        <!-- <section class="row"> -->
+        <!-- <div class="col-md-6"> -->
+            <!-- <h2 class="text-primary text-decoration-underline">Titre</h2> -->
+        <!-- </div> -->
           <!-- fin col -->
 
-        </section>
+        <!-- </section> -->
     </div>
       <!-- fin container  -->
     </main>
