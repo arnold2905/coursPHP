@@ -1,6 +1,6 @@
 <?php require_once 'inc/init.inc.php'; // 1 require connexion, session etc...
 
-jevar_dump($_SESSION);
+//jevar_dump($_SESSION);
 // 1 - les "if" qui suivent vérifient si les valeurs passsées dans le "$_POST" correspondent à ce qui est attendu et autorisé dans la BDD
 
 

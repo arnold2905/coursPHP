@@ -1,48 +1,52 @@
-<?php require_once 'inc/init.inc.php'; // 1 require connexion, session etc...
+<?php require_once 'inc/init.inc.php'; // require connexion, session etc...
+// POUR SE CONNECTER ET DECONNECTER
+
 
 //jevar_dump($_SESSION);
 
-// 2- 
+// 2- DECONNEXION DU MEMBRE
 
-// 3- 
+// 3- REDIRECTION VERS LA PAGE PROFIL
 
 // 1- TRAITEMENT DU FORMULAIRE DE CONNEXION
 
-jevar_dump($_POST);
+//jevar_dump($_POST);
 
-if (!empty($_POST)) {
-  if (empty($_POST['pseudo'])) {
+if (!empty($_POST)) { 
+  if (empty($_POST['mdp'])) { // si c'est vide - 0 ou NULL c'est False
+    if (empty($_POST['pseudo'])) {
     $contenu .='<div class="alert alert-danger">Le pseudo est requis!</div>';
   }
 
-  if (empty($_POST['mdp'])) {
+  if (empty($_POST['mdp'])) { // si mdp vide 
     $contenu .='<div class="alert alert-danger">Le mdp est requis!</div>';
   }
-  if (empty($_contenu)) {
+  if (empty($_contenu)) { // si la variable $contenu est vide pas d'erreurs
     $_resultat = executeRequete( "SELECT * FROM membres WHERE pseudo = :pseudo",
                       array(
                           ':pseudo' => $_POST['pseudo'],
                           //':mdp' => $_POST['mdp'],
                       ));
 
-    if ( $_resultat -> rowCount() == 1 )  {
+    if ( $_resultat -> rowCount() == 1 )  { // s'il y aune ligne c'est qu'il y a ce pseudo et ce membre
       $_membre = $_resultat->fetch( PDO::FETCH_ASSOC);
       jevar_dump($_membre);
 
-       if(password_verify($_POST['mdp'],$_membre['mdp'])) {
+       if(password_verify($_POST['mdp'],$_membre['mdp'])) { // si le hash du mdp de la BDD correspond au mdp du formulaire, alors password_verify retourne true
          //echo'salut le membre';
-         $_SESSION['membre'] = $_membre;
+         $_SESSION['membre'] = $_membre; // création d'une session avec les infos du membre, un tableau multidimensionnel
 
-         jevar_dump($_SESSION);
+         //jevar_dump($_SESSION);
 
-         header('location:profil.php'); // voir
+         header('location:profil.php'); // on redirige le membre vers la page profil
          exit();
        } else {
         $contenu .='<div class="alert alert-danger">Erreur sur les identifiants!</div>';
        }
     }   else {
       $contenu .='<div class="alert alert-danger">Erreur sur les identifiants!</div>';
-    }  
+    } // fin vérif password
+    }  // fin du résultat
 
   } // fin if empty $contenu
 

@@ -1,8 +1,12 @@
 <?php require_once 'inc/init.inc.php'; // 1 require connexion, session etc...
 
-jevar_dump($_SESSION);
-jevar_dump(estConnecte());
-jevar_dump(estAdmin());
+//jevar_dump($_SESSION);
+//jevar_dump(estConnecte());
+//jevar_dump(estAdmin());
+
+if (!estConnecte()) { // accès à la page autorisé quand on est connecté
+  header('location:connexion.php'); 
+}
 ?>
 
 <!doctype html>
@@ -18,7 +22,7 @@ jevar_dump(estAdmin());
     <!-- Bootstrap ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <title>CoursPHP - Chapitre x - La Boutique - connexion</title>
+    <title>CoursPHP - Chapitre x - La Boutique - Profil</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,9 +55,15 @@ jevar_dump(estAdmin());
         <?php 
           if(estAdmin()) {
             echo '<p>Vous êtes administrateur!</p>';
+            echo '<a class="btn btn-primary" href="admin/index.php">Espace admin</a>';
           } else {
             echo '<p>Vous êtes connecté rendez-vous à la boutique!</p>';
+            echo '<a class="btn btn-success" href="accueil.php">Retour à la boutique</a>';
           }
+          if (estConnecte()) {
+
+          }
+
         ?>
   
         </section>
