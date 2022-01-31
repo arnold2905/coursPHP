@@ -1,4 +1,4 @@
-<?php require_once '../inc/functions.php'; // 1 FONCTIONS
+//<?php require_once '../inc/functions.php'; // 1 FONCTIONS
 
 // la variable '$_GLOBALS'récupère toutes les informations
 //jevar_dump($GLOBALS);
@@ -69,29 +69,29 @@ session_start();
         <div class="col-md-6">
             <h2 class="text-primary text-decoration-underline">La session est remplie</h2>
 
-            <?php 
+            //<?php 
 
             // Les sessions se trouvent dans le dossier /tmp/ du serveur càd dans le dossier tmp de Xampp
 
-            $_SESSION['nom'] ='Tintin';
-            $_SESSION['pseudo'] ='Tintin';
-            $_SESSION['mdp'] ='Milou2022';
-            $_SESSION['email'] ='tintin@moulinsart.be';
+           // $_SESSION['nom'] ='Tintin';
+            //$_SESSION['pseudo'] ='Tintin';
+            //$_SESSION['mdp'] ='Milou2022';
+           // $_SESSION['email'] ='tintin@moulinsart.be';
 
-            jevar_dump($_SESSION);
+            //jevar_dump($_SESSION);
 
             // Vider une partie de la session avec 'unset()', enlève dans le tableau l'indice 'mdp' et sa valeur
             unset($_SESSION['mdp']);
 
-            jevar_dump($_SESSION);
+            //jevar_dump($_SESSION);
 
-            echo'<hr>';
+            //echo'<hr>';
 
             // session destroy
             // session_destroy() n'est exécuté qu'à la fin du script.Le fichier temporaire dans le dossier a été supprimé
 
-            jevar_dump($_SESSION);
-            ?>
+           // jevar_dump($_SESSION);
+            //?>
 
         </div>
           <!-- fin col -->

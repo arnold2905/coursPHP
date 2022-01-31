@@ -1,43 +1,55 @@
-<?php require_once 'inc/init.inc.php'; // require connexion, session etc...
+<?php 
+require_once 'inc/init.inc.php'; // require connexion, session etc...
+error_reporting(E_ALL);
 // POUR SE CONNECTER ET DECONNECTER
-
-
 //jevar_dump($_SESSION);
 
 // 2- DECONNEXION DU MEMBRE
-
+//jevar_dump($_GET);
+$message = '';
+if (isset($_GET['action']) && $_GET['action'] == 'deconnexion') { // si il existe 
+  unset($_SESSION['membre']); 
+  //jevar_dump($_SESSION);
+  $message = '<div class="alert alert-success">Vous êtes déconnecté</div>';
+}
 // 3- REDIRECTION VERS LA PAGE PROFIL
+if (estConnecte()) {
+  header('location:profil.php');
+  exit();
+}
 
 // 1- TRAITEMENT DU FORMULAIRE DE CONNEXION
 
 //jevar_dump($_POST);
 
 if (!empty($_POST)) { 
-  if (empty($_POST['mdp'])) { // si c'est vide - 0 ou NULL c'est False
-    if (empty($_POST['pseudo'])) {
+
+  if (empty($_POST['pseudo'])) {
     $contenu .='<div class="alert alert-danger">Le pseudo est requis!</div>';
   }
 
   if (empty($_POST['mdp'])) { // si mdp vide 
     $contenu .='<div class="alert alert-danger">Le mdp est requis!</div>';
   }
+
   if (empty($_contenu)) { // si la variable $contenu est vide pas d'erreurs
     $_resultat = executeRequete( "SELECT * FROM membres WHERE pseudo = :pseudo",
                       array(
                           ':pseudo' => $_POST['pseudo'],
-                          //':mdp' => $_POST['mdp'],
                       ));
+  jevar_dump($_resultat);
+
 
     if ( $_resultat -> rowCount() == 1 )  { // s'il y aune ligne c'est qu'il y a ce pseudo et ce membre
       $_membre = $_resultat->fetch( PDO::FETCH_ASSOC);
-      jevar_dump($_membre);
+      //jevar_dump($_membre);
 
        if(password_verify($_POST['mdp'],$_membre['mdp'])) { // si le hash du mdp de la BDD correspond au mdp du formulaire, alors password_verify retourne true
          //echo'salut le membre';
          $_SESSION['membre'] = $_membre; // création d'une session avec les infos du membre, un tableau multidimensionnel
 
          //jevar_dump($_SESSION);
-
+        //echo 'toto';
          header('location:profil.php'); // on redirige le membre vers la page profil
          exit();
        } else {
@@ -46,7 +58,7 @@ if (!empty($_POST)) {
     }   else {
       $contenu .='<div class="alert alert-danger">Erreur sur les identifiants!</div>';
     } // fin vérif password
-    }  // fin du résultat
+   
 
   } // fin if empty $contenu
 
@@ -94,7 +106,7 @@ if (!empty($_POST)) {
         <div class="col-md-6 p-2">
             <h2 class="text-white text-center bg-primary text-decoration-underline">Connexion à votre espace</h2>
          
-            <?php echo $contenu ?>
+            <?php echo $message; ?>
             
       <form action="" method="POST" class="border border-primary p-1">
 

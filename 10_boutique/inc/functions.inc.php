@@ -17,7 +17,7 @@ function executeRequete( $requete, $parametres = array()) {// utile pour toutes 
 
         $resultat = $pdoMAB->prepare($requete); // prépare la requête
         $succes = $resultat->execute($parametres); //et exécute
-
+        
         if ($succes === false) {
             return false; // si la requête n'a pas marché , je renvoie "false"
         } else {

@@ -29,7 +29,7 @@ session_start(); // ici la session n'est pas recréée car elle existe déjà gr
       <h1 class="display-4 text-center text-primary text-decoration-underline">CoursPHP - Chapitre 08 - 02 Session</h1>
       <p class="lead text-center text-danger text-decoration-underline">La session est déjà ouverte et accessible dans tous les scripts du site</p>
 
-      jevar_dump($_SESSION);
+      //jevar_dump($_SESSION);
     </header> 
     <!-- fin container-fluid header  -->
     <div class="container bg-white mt-2 mb-2 m-auto p-2">
