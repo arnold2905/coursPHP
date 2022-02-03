@@ -40,11 +40,8 @@ if (!estConnecte()) { // accès à la page autorisé quand on est connecté
     <header class="container-fluid f-header p-2">
       <h1 class="display-4 text-center text-primary text-decoration-underline">CoursPHP - La boutique - Profil<i class="bi bi-bag-check"></i></h1>
       <p class="lead text-center text-danger text-decoration-underline"></p>
-    </header> 
-    <!-- fin container-fluid header  -->
-    <div class="container bg-white mt-2 mb-2 m-auto p-2">
-  
-        <section class="row justify-content-center">
+      
+      <section class="row justify-content-center">
   
         <div class="col-md-6 p-2">
             <h2 class="text-white text-center bg-primary text-decoration-underline">Profil</h2>
@@ -70,8 +67,10 @@ if (!estConnecte()) { // accès à la page autorisé quand on est connecté
         </ul>
         </div>
         </section>
-        <!-- fin row -->  
 
+    </header> 
+    <!-- fin container-fluid header  -->
+    <div class="container bg-white mt-2 mb-2 m-auto p-2">
         <div class="container">
           <section class="row m-3 justify-content-center">
           <div class="col-md-4 bg-light">

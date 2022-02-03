@@ -10,3 +10,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'EB Garamond', serif;
 }
 
+div {
+    font-family: 'EB Garamond', serif;
+    font-family: 'Aclonica', sans-serif;
+    font-family: 'Playfair Display', serif;
+}
+
+form {
+    font-family: 'Aclonica', sans-serif;
+}

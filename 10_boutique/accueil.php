@@ -245,7 +245,6 @@ require_once 'inc/init.inc.php';
     // debug($nbr_commentaires);
     ?>
     <h5 class= "alert alert-warning text-primary">Il y a <?php echo $pdt; ?> produits en ligne !</h5>
-
     <table class="table table-striped">
       <thead>
         <tr>
