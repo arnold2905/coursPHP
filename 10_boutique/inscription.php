@@ -48,7 +48,11 @@ if (!empty($_POST)) {
         $contenu .='<div class="alert alert-danger">Votre nom de famille doit faire entre 4 et 50 caractères</div>';
     }
 
-    if ( empty($_contenu)) { // si la variable est vide c'est qu'il n'y a aucune erreur dans $_POST
+    // si la variable est vide c'est qu'il n'y a aucune erreur dans $_POST
+    if ( empty($_contenu)) { 
+        require 'classes/Membre.php';
+        // $membre1=new Membre('pseudo1','&turybfr','pseudo1@gmail.com','Mlle','Dupond','Christelle','3 avenue de Pasteur',75015, 'Paris',1);
+
         $membre = executeRequete( " SELECT * FROM membres WHERE pseudo = :pseudo ", 
                                         array(':pseudo' => $_POST['pseudo']));
         
@@ -56,19 +60,21 @@ if (!empty($_POST)) {
             $contenu .='<div class="alert alert-danger">Le pseudo est indisponible ; veuillez en choisir un autre!</div>';
         } else { // sinon on exécute la requête d'insertion
             $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT); //bcrypt .....on hâche le mot de passe avec la fonction prédéfinie "password_hash()" avec un algorithme "bcrypt" on passe cette information en variable
+        $membre2=new Membre($_POST['civilite'],$_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['pseudo'],$_POST['mdp'],$_POST['adresse'],$_POST['code_postal'],$_POST['ville']);
+        $succes=$membre2->insertMembre();
 
-            $succes = executeRequete ( " INSERT INTO membres (civilite, prenom, nom, email, pseudo, mdp, adresse, code_postal, ville, statut) VALUES (:civilite, :prenom, :nom, :email, :pseudo, :mdp, :adresse, :code_postal, :ville, 0)", 
-            array(
-                ":civilite" => $_POST['civilite'],
-                ":prenom" => $_POST['prenom'],
-                ":nom" => $_POST['nom'],
-                ":email" => $_POST['email'],
-                ":pseudo" => $_POST['pseudo'],
-                ":mdp" => $mdp, // ici on récupère le mdp de la variable qui contient le hash du  mot de passe
-                ":adresse" => $_POST['adresse'],
-                ":code_postal" => $_POST['code_postal'],
-                ":ville" => $_POST['ville'],
-            ));
+            // $succes = executeRequete ( " INSERT INTO membres (civilite, prenom, nom, email, pseudo, mdp, adresse, code_postal, ville, statut) VALUES (:civilite, :prenom, :nom, :email, :pseudo, :mdp, :adresse, :code_postal, :ville, 0)", 
+            // array(
+            //     ":civilite" => $_POST['civilite'],
+            //     ":prenom" => $_POST['prenom'],
+            //     ":nom" => $_POST['nom'],
+            //     ":email" => $_POST['email'],
+            //     ":pseudo" => $_POST['pseudo'],
+            //     ":mdp" => $mdp, // ici on récupère le mdp de la variable qui contient le hash du  mot de passe
+            //     ":adresse" => $_POST['adresse'],
+            //     ":code_postal" => $_POST['code_postal'],
+            //     ":ville" => $_POST['ville'],
+            // ));
 
             // AJOUTER LORS DE LA MISE EN LIGNE LA FONCTION MAIL
             if ($succes) {
