@@ -44,7 +44,7 @@ class Membre
     }
 
     public function insertMembre() {
-        //On exécutre la requête d'insertion 
+        //On exécute la requête d'insertion 
 
         // On hâche le mot de passe avec la fonction prédéfinie password_hash avec un algorithme "bcrypt"
         $mdp = password_hash($this->password, PASSWORD_DEFAULT);
