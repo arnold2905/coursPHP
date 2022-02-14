@@ -71,9 +71,9 @@ class Membre
         // On hâche le mot de passe avec la fonction prédéfinie password_hash avec un algorithme "bcrypt"
         $mdp = password_hash($this->password, PASSWORD_DEFAULT);
 
-        $succes = executeRequete ("DELETE FROM membres WHERE pseudo = :pseudo,
+        $succes = executeRequete ("DELETE FROM membres WHERE pseudo = :pseudo",
         array(
-            ":pseudo" => $this->pseudo,
+            ":pseudo" => $this->pseudo
         ));
 
         return $succes;
